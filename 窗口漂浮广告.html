@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+div{width:100px;height:100px;background:red;position:absolute;}
+</style>
+</head>
+
+<body>
+<div id="box"></div>
+<script>
+window.onload=function(){
+	var oBox=document.getElementById('box');
+	var iSpeedX=8;
+	var iSpeedY=8;
+	setInterval(function(){
+		var l=oBox.offsetLeft+iSpeedX;
+		var t=oBox.offsetTop+iSpeedY;
+		if(l>=document.documentElement.clientWidth-oBox.offsetWidth){
+			l=document.documentElement.clientWidth-oBox.offsetWidth;
+			iSpeedX*=-0.8;
+		}
+		
+		if(t>=document.documentElement.clientHeight-oBox.offsetHeight){
+			t=document.documentElement.clientHeight-oBox.offsetHeight;
+			iSpeedY*=-0.8;
+		}
+		
+		if(l<=0){
+			l=0;
+			iSpeedX*=-0.8;
+		}
+		
+		if(t<=0){
+			t=0;
+			iSpeedY*=-0.8;
+		}
+		
+		oBox.style.left=l+'px';
+		oBox.style.top=t+'px';
+	},30);
+};
+</script>
+</body>
+</html>

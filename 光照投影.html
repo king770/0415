@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+*{padding:0;margin:0;}
+#box{width:100px;height:100px;background:#FC3;position:absolute;border-radius:50%;box-shadow:0 0 50px #FC3;top:0;left:0;}
+p{margin:300px auto;width:150px;height:40px;text-align:center;font-size:40px;font-weight:bold;text-shadow:50px 50px 30px black;}
+</style>
+</head>
+
+<body>
+<div id="box"></div>
+<p>试试看</p>
+<script>
+window.onload=function(){
+	var oBox=document.querySelector('#box');
+	var oP=document.querySelector('p');
+	
+	document.onmousemove=function(ev){
+		oBox.style.left=ev.clientX-oBox.offsetWidth/2+'px';
+		oBox.style.top=ev.clientY-oBox.offsetHeight/2+'px';
+		
+		var disX=-(oBox.offsetLeft+oBox.offsetWidth/2-oP.offsetLeft+oP.offsetWidth/2);
+		var disY=-(oBox.offsetTop+oBox.offsetHeight/2-oP.offsetTop+oP.offsetHeight/2);
+		
+		var c=Math.sqrt(disX*disX+disY*disY);
+		
+		oP.style.textShadow=disX/2+'px '+disY/2+'px '+c/20+'px black';
+	};
+};
+</script>
+</body>
+</html>

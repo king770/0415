@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+div{width:100px;height:100px;position:absolute;background:red;}
+</style>
+</head>
+
+<body>
+<div id="box"></div>
+<script>
+window.onload=function(){
+	var oBox=document.getElementById('box');
+	var left=10;
+	var down=5;
+	var timer=null;
+	timer=setInterval(function(){
+		down+=3;
+		var l=left+oBox.offsetLeft;
+		var d=down+oBox.offsetTop;
+		
+		if(l>document.documentElement.clientWidth-oBox.offsetWidth){
+			l=document.documentElement.clientWidth-oBox.offsetWidth;
+			down*=0.8;
+			left*=-0.8;
+		}
+		
+		if(d>document.documentElement.clientHeight-oBox.offsetHeight){
+			d=document.documentElement.clientHeight-oBox.offsetHeight;
+			down*=-0.8;
+			left*=0.8;
+		}
+		
+		if(l<0){
+			l=0;
+			down*=0.8;
+			left*=-0.8;
+		}
+		
+		if(d<0){
+			d=0;
+			down*=-0.8;
+			left*=0.8;
+		}
+		
+		if(Math.abs(down)<1)down=0;
+		if(Math.abs(left)<1)left=0;
+		
+		oBox.style.left=l+'px';
+		oBox.style.top=d+'px';
+		
+		if(down==0&&left==0&&d==document.documentElement.clientHeight-oDiv.offsetHeight){
+			clearInterval(timer);
+		}
+		
+	},30);
+};
+</script>
+</body>
+</html>

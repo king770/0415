@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+#box{width:200px;height:200px;background:-webkit-linear-gradient(0deg,purple,aqua);border-radius:50%;}
+</style>
+</head>
+
+<body>
+<div id="box"></div>
+<script>
+window.onload=function(){
+	var oBox=document.querySelector('#box');
+	var n=0;
+	setInterval(function(){
+		n++;
+		oBox.style.background='-webkit-linear-gradient('+n+'deg,purple,aqua)';
+	},30);
+};
+</script>
+</body>
+</html>

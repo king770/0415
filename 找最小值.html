@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+
+<body>
+<script>
+window.onload=function(){
+	var arr=[22,45,24,6,3,22,566,25,99,5,-45,0,43];
+	
+	function findMin(s,e){
+		if(s>e){
+			return false;
+		}else if(s==e){
+			return arr[s];
+		}else if(s==e-1){
+			if(arr[s]>arr[e]){
+				return arr[e];
+			}else{
+				return arr[s];
+			}
+		}
+		
+		var c=Math.floor((s+e)/2);
+		var l=findMin(s,c);
+		var r=findMin(c+1,e);
+		
+		if(l>r){
+			return r;
+		}else{
+			return l;
+		}
+		
+	}
+	
+	alert(findMin(0,arr.length-1));
+};
+</script>
+</body>
+</html>

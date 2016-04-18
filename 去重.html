@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+
+<body>
+<script>
+window.onload=function(){
+	var arr=[1,23,32,23,1,2,2,4,4,6,4,4,7,2,21,5,5,5,5];
+	
+	function findinArr(arr,iteam){
+		for(var i=0;i<arr.length;i++){
+			if(arr[i]==iteam){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	function findOnly(s,e){
+		if(s>e){
+			return [];
+		}else if(s==e){
+			return [arr[s]];
+		}else if(s==e-1){
+			if(arr[s]==arr[e]){
+				return [arr[s]];
+			}else{
+				return [arr[s],arr[e]];
+			}
+		}
+		
+		var c=Math.floor((s+e)/2);
+		var l=findOnly(s,c);
+		var r=findOnly(c+1,e);
+		
+		while(l.length){
+			if(findinArr(r,l[0])){
+				l.shift();
+			}else{
+				r.push(l[0]);
+			}
+		}
+		return r;
+	}
+	document.write(findOnly(0,arr.length-1));
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+*{padding:0;margin:0;}
+ul{width:510px;height:50px;margin:100px auto;position:relative;}
+li{width:100px;height:50px;border:1px solid black;list-style:none;float:left;line-height:50px;text-align:center;position:relative;z-index:2;}
+#last{position:absolute;background:yellow;z-index:1;}
+</style>
+</head>
+
+<body>
+<ul id="list">
+	<li>首页</li>
+    <li>购物</li>
+    <li>个人</li>
+    <li>中心</li>
+    <li id="last"></li>
+</ul>
+<script>
+window.onload=function(){
+	var oList=document.getElementById('list');
+	var aLi=oList.getElementsByTagName('li');
+	var oLast=document.getElementById('last');
+	var iNow=0;
+	
+	for(var i=0;i<aLi.length-1;i++){
+		aLi[i].index=i;
+		aLi[i].onmouseover=function(){
+			move(oLast,this.offsetLeft);
+		};
+		aLi[i].onmouseout=function(){
+			move(oLast,iNow*aLi[0].offsetWidth);
+		};
+		aLi[i].onclick=function(){
+			iNow=this.index;
+			
+		};
+		
+	}
+	
+	var iSpeed=0;
+	var timer=null;
+	function move(obj,iTarget){
+		var left=obj.offsetLeft;
+		clearInterval(timer);
+		timer=setInterval(function(){
+			iSpeed+=(iTarget-left)/5;
+			iSpeed*=0.8;
+			left+=iSpeed;
+			obj.style.left=left+'px';
+			
+			if(Math.round(iSpeed)==0&&Math.round(left)==iTarget){
+				clearInterval(timer);
+			}
+		},30);
+	}
+};
+</script>
+</body>
+</html>
